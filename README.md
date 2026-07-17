@@ -33,6 +33,7 @@ Demo accounts seeded with password `demo123`:
 
 | Method | Endpoint | Access |
 | --- | --- | --- |
+| GET | `/` | Public API welcome |
 | GET | `/api/health` | Public |
 | POST | `/api/auth/signup` | Public |
 | POST | `/api/auth/login` | Public |

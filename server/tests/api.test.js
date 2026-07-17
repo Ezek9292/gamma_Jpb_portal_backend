@@ -40,6 +40,12 @@ beforeEach(async () => {
 });
 
 describe('authentication and authorization', () => {
+  it('serves the API welcome and health endpoints', async () => {
+    const root = await request(app).get('/').expect(200);
+    expect(root.body).toMatchObject({ success: true, data: { name: 'Departure Job Portal API', status: 'running', health: '/api/health' } });
+    await request(app).get('/api/health').expect(200, { success: true, data: { status: 'ok' } });
+  });
+
   it('signs up, normalizes email, hides hashes, and logs in', async () => {
     const signup = await request(app).post('/api/auth/signup').send({ name: 'New Person', email: '  NEW@Example.COM ', password, role: 'applicant' }).expect(201);
     expect(signup.body.data.user.email).toBe('new@example.com'); expect(signup.body.data.user.passwordHash).toBeUndefined(); expect(signup.body.data.token).toBeTruthy();
