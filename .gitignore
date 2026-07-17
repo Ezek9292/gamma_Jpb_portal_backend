@@ -1,0 +1,8 @@
+node_modules/
+server/node_modules/
+dist/
+.env
+server/.env
+server/uploads/resumes/*
+!server/uploads/resumes/.gitkeep
+npm-debug.log*

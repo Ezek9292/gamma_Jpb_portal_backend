@@ -1,0 +1,24 @@
+import cors from 'cors';
+import express from 'express';
+import helmet from 'helmet';
+import { env } from './config/env.js';
+import { errorHandler, notFound } from './middleware/errorHandler.js';
+import { uploadsRoot } from './middleware/upload.js';
+import { applicantRouter } from './routes/applicantRoutes.js';
+import { applicationRouter } from './routes/applicationRoutes.js';
+import { authRouter } from './routes/authRoutes.js';
+import { jobRouter } from './routes/jobRoutes.js';
+
+export const app = express();
+app.disable('x-powered-by');
+app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+app.use(cors({ origin: env.clientOrigin }));
+app.use(express.json({ limit: '100kb' }));
+app.use('/uploads', express.static(uploadsRoot));
+app.get('/api/health', (_req, res) => res.json({ success: true, data: { status: 'ok' } }));
+app.use('/api/auth', authRouter);
+app.use('/api/applicants', applicantRouter);
+app.use('/api/jobs', jobRouter);
+app.use('/api', applicationRouter);
+app.use(notFound);
+app.use(errorHandler);
