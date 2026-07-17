@@ -18,7 +18,7 @@ export const env = {
   mongoDbName: process.env.MONGODB_DB_NAME || 'Gamma_job_portal',
   jwtSecret: process.env.JWT_SECRET || (process.env.NODE_ENV === 'test' ? 'test-secret-that-is-long-enough' : ''),
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '7d',
-  clientOrigin: process.env.CLIENT_ORIGIN || process.env.FRONTEND_URL || 'http://localhost:5173',
+  clientOrigin: process.env.CLIENT_ORIGIN || process.env.FRONTEND_URL || 'http://localhost:3001' || 'https://gamma-jpb-portal.vercel.app/',
   cloudinaryUrl: process.env.CLOUDINARY_URL || '',
   cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME || '',
   cloudinaryApiKey: process.env.CLOUDINARY_API_KEY || '',
