@@ -12,7 +12,7 @@ import { jobRouter } from './routes/jobRoutes.js';
 export const app = express();
 app.disable('x-powered-by');
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
-app.use(cors({ origin: env.clientOrigin }));
+app.use(cors({ origin: env.clientOrigins }));
 app.use(express.json({ limit: '100kb' }));
 app.use('/uploads', express.static(uploadsRoot));
 app.get('/', (_req, res) => res.json({

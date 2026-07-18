@@ -14,7 +14,7 @@ npm run seed
 npm run dev
 ```
 
-On macOS/Linux use `cp .env.example .env`. The backend loads `.env` from either the repository root or `server/`, so an existing root `.env` also works. Set a long random `JWT_SECRET`. `FRONTEND_URL` is accepted as an alias for `CLIENT_ORIGIN`, and `DATABASE_URL` is accepted as an alias for `MONGODB_URI`. The database name defaults to `departure_job_portal` and can be changed with `MONGODB_DB_NAME`. The API defaults to `http://localhost:5000`.
+On macOS/Linux use `cp .env.example .env`. The backend loads `.env` from either the repository root or `server/`, so an existing root `.env` also works. Set a long random `JWT_SECRET`. Configure one or more comma-separated frontend origins with `CLIENT_ORIGINS`; `CLIENT_ORIGIN` and `FRONTEND_URL` remain supported for one origin. `DATABASE_URL` is accepted as an alias for `MONGODB_URI`. The database name can be changed with `MONGODB_DB_NAME`. The API defaults to `http://localhost:5000`.
 
 Demo accounts seeded with password `demo123`:
 

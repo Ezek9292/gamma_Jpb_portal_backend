@@ -12,6 +12,7 @@ vi.mock('../src/services/cloudinaryService.js', () => ({
   deleteCloudinaryDocument: vi.fn(async () => undefined),
 }));
 import { app } from '../src/app.js';
+import { env } from '../src/config/env.js';
 import { ApplicantProfile } from '../src/models/ApplicantProfile.js';
 import { Application } from '../src/models/Application.js';
 import { Job } from '../src/models/Job.js';
@@ -42,8 +43,13 @@ beforeEach(async () => {
 describe('authentication and authorization', () => {
   it('serves the API welcome and health endpoints', async () => {
     const root = await request(app).get('/').expect(200);
-    expect(root.body).toMatchObject({ success: true, data: { name: 'Departure Job Portal API', status: 'running', health: '/api/health' } });
+    expect(root.body).toMatchObject({ success: true, data: { name: 'Gamma Job Portal API', status: 'running', health: '/api/health' } });
     await request(app).get('/api/health').expect(200, { success: true, data: { status: 'ok' } });
+    const preflight = await request(app).options('/api/jobs')
+      .set('Origin', env.clientOrigins[0])
+      .set('Access-Control-Request-Method', 'GET')
+      .expect(204);
+    expect(preflight.headers['access-control-allow-origin']).toBe(env.clientOrigins[0]);
   });
 
   it('signs up, normalizes email, hides hashes, and logs in', async () => {

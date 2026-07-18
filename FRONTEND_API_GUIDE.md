@@ -632,12 +632,12 @@ The response contains the updated application in `data.application`.
 
 ## 14. CORS requirement
 
-The backend permits the origin configured in its `CLIENT_ORIGIN` or `FRONTEND_URL` environment variable. The deployed frontend URL must be added to the Render backend environment exactly, including `https://` and without an incorrect path.
+The backend permits the origins configured in its `CLIENT_ORIGINS` environment variable. Values are comma-separated and must contain only the protocol and host. `CLIENT_ORIGIN` and `FRONTEND_URL` are also supported for a single origin.
 
 Example:
 
 ```env
-CLIENT_ORIGIN=https://departure-portal.example.com
+CLIENT_ORIGINS=https://departure-portal.example.com,http://localhost:3001
 ```
 
 After changing the value, redeploy or restart the backend service.
